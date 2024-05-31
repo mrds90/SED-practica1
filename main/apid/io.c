@@ -15,44 +15,43 @@
 
 /* TAGs */
 static const char *TAG = "IO/GPIO";
+static int estado = 0;
 
 /********************************** GPIO **************************************/
 
 /******************************************************************************
 IO_gpioInit(): inicializa perifericos de entrada/salida
 *******************************************************************************/
-void IO_gpioInit(){
+void IO_gpioInit() {
+    /* Configure the IOMUX register for pad BLINK_GPIO (some pads are muxed to GPIO
+       on reset already, but some default to other functions and need to be switched
+       to GPIO. Consult the Technical Reference for a list of pads and their default
+       functions.) */
 
-  /* Configure the IOMUX register for pad BLINK_GPIO (some pads are muxed to GPIO
-     on reset already, but some default to other functions and need to be switched
-     to GPIO. Consult the Technical Reference for a list of pads and their default
-     functions.) */
-
-  gpio_reset_pin(BLINK_GPIO);
-  /* Set the GPIO as a push/pull output */
-  gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
-  ESP_LOGI(TAG, "GPIO %d MODE %d ",BLINK_GPIO , GPIO_MODE_OUTPUT );
-  gpio_set_level(BLINK_GPIO, 0);
-
+    gpio_reset_pin(BLINK_GPIO);
+    /* Set the GPIO as a push/pull output */
+    gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
+    ESP_LOGI(TAG, "GPIO %d MODE %d ", BLINK_GPIO, GPIO_MODE_OUTPUT);
+    gpio_set_level(BLINK_GPIO, 0);
 }
 
 /******************************************************************************
  IO_setLed(): Setea el estado del LED configurado por defecto en el módulo ESP32
 ******************************************************************************/
-int IO_setLed(int estado){
-
-  gpio_set_level(BLINK_GPIO, estado);
-  return estado;
-
+int IO_setLed(int nuevo_estado) {
+    gpio_set_level(BLINK_GPIO, nuevo_estado != 0);
+    estado = nuevo_estado != 0;
+    return nuevo_estado;
 }
 
 /******************************************************************************
  IO_toggleLed(): Togglea estado del LED configurado por defecto en el módulo ESP32
 ******************************************************************************/
-void IO_toggleLed(void){
+void IO_toggleLed(void) {
+    estado = 1 - estado;
+    gpio_set_level(BLINK_GPIO, estado);
+}
 
- static int estado = 0;
- estado = 1 - estado;
- gpio_set_level(BLINK_GPIO, estado);
-
+int IO_getLed(void) {
+    return estado;
 }

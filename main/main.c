@@ -24,16 +24,20 @@ void app_main(void) {
             static int8_t rssi_pow = 0;
             static char msg[50];
             rssi_pow = WIFI_getRSSI();
-            IO_setLed(1);
             sprintf(msg, "%d", rssi_pow);
             MQTT_publish("marcos_practica1/rssi", msg);
-            MQTT_publish("marcos_practica1/led", "ON");
             ESP_LOGI(TAG, "marcos_practica1/rssi, mensaje %s\n", msg);
             CRONO_delayMs(450);
+            if (IO_getLed() == 0) {
+                IO_setLed(1);
+                MQTT_publish("marcos_practica1/led", "ON");
+            }
         }
         else {
-            IO_setLed(0);
-            MQTT_publish("marcos_practica1/led", "OFF");
+            if (IO_getLed() != 0) {
+                IO_setLed(0);
+                MQTT_publish("marcos_practica1/led", "OFF");
+            }
         }
         CRONO_delayMs(50);
     }

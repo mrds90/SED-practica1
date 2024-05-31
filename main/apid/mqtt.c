@@ -68,8 +68,12 @@ void MQTT_processTopic(const char *topic, const char *data) {
     }
 
     if (strcmp("marcos_practica1/enable_rssi", topic) == 0) {
-        printf("MQTT: Mensaje recibido: %s\n", data);
-        REPORT_ToggleRSSIReport();
+        if (strcmp("On", data) == 0) {
+            REPORT_RSSIReportEnable(ENABLE_RSSI_MEASUREMENT);
+        }
+        else {
+            REPORT_RSSIReportEnable(DISABLE_RSSI_MEASUREMENT);
+        }
     }
 }
 

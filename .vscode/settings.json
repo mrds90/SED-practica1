@@ -5,5 +5,8 @@
         "config.h": "c",
         "report.h": "c"
     },
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "cSpell.words": [
+        "rssi"
+    ]
 }

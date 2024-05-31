@@ -10,8 +10,8 @@
 #define ESPIDF_v4 // comentar esta línea para la versión 5
 
 /* configuración WIFI */
-#define ESP_WIFI_SSID "HITRON-A440" // "SSID wifi"
-#define ESP_WIFI_PASS "CDBD8Hitron" // "pass wifi"
+#define ESP_WIFI_SSID "SSID wifi"
+#define ESP_WIFI_PASS "pass wifi"
 
 /*  Configuracion MQTT  */
 #define PORT_MQTT 1883                        // default

@@ -1,3 +1,5 @@
+En la carpeta `/Out` se guardan los resgistros de rssi capturado por el script `guardar_mensajes.sh`
+
 Pueden configurarse varios parámetros en la opción "Práctica 1 Configuration" del menuconfig o en forma manual.
 
 Wifi:     En "config.h" están las deifniciones de ssid y pass. También pueden borrarse
@@ -17,3 +19,5 @@ Delay:    Se define el valor de un delay de proposito general desde el menuconfi
 
 Mensaje:  Se define un mensaje de proposito general desde el menuconfig. En la aplicación
           debe llamarse como CONFIG_TEST_MESSAGE
+
+

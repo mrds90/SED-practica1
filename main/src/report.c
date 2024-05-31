@@ -13,8 +13,8 @@
 
 static uint8_t rssi_rep_enable = 0;
 
-void REPORT_ToggleRSSIReport(void) {
-    rssi_rep_enable^=1;
+void REPORT_RSSIReportEnable(uint8_t enable) {
+    rssi_rep_enable=enable;
 }
 
 

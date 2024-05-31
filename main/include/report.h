@@ -14,8 +14,10 @@
 
 #include <stdint.h>
 
+#define ENABLE_RSSI_MEASUREMENT 1
+#define DISABLE_RSSI_MEASUREMENT 0
 
-void REPORT_ToggleRSSIReport(void);
+void REPORT_RSSIReportEnable(uint8_t enable);
 
 uint8_t REPORT_RSSIReportCheck(void);
 

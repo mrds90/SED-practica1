@@ -10,5 +10,6 @@
 void IO_gpioInit();
 int IO_setLed(int);
 void IO_toggleLed(void);
+int IO_getLed(void);
 
 #endif /* IO_H_ */
